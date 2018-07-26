@@ -51,7 +51,7 @@ namespace TrashCollector
             if (!roleManager.RoleExists("Customer"))
             {
                 var role = new IdentityRole();
-                role.Name = "Employee";
+                role.Name = "Customer";
                 roleManager.Create(role);
             }
         }
