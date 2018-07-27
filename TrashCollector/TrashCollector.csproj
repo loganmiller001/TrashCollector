@@ -209,6 +209,10 @@
     <Compile Include="Migrations\201807261532072_EmployeeAndCustomerMigration.Designer.cs">
       <DependentUpon>201807261532072_EmployeeAndCustomerMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807271235151_PickUpDayAdded.cs" />
+    <Compile Include="Migrations\201807271235151_PickUpDayAdded.Designer.cs">
+      <DependentUpon>201807271235151_PickUpDayAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -309,6 +313,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807261532072_EmployeeAndCustomerMigration.resx">
       <DependentUpon>201807261532072_EmployeeAndCustomerMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807271235151_PickUpDayAdded.resx">
+      <DependentUpon>201807271235151_PickUpDayAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

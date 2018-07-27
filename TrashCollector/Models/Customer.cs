@@ -15,5 +15,7 @@ namespace TrashCollector.Models
         public string StreetAddress { get; set; }
         public int Zipcode { get; set; }
         public int AmmountDue { get; set; }
+        public DateTime PickUpDay { get; set; }
+
     }
 }
