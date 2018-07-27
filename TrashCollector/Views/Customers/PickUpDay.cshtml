@@ -1,0 +1,3 @@
+﻿@Html.DropDownList("Day", Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString()}), "Day")
+@Html.DropDownList("Month", Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), "Month")
+@Html.DropDownList("Year", Enumerable.Range(2018, 45).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Year")
