@@ -4,3 +4,10 @@
 @Html.DropDownList("Hour", Enumerable.Range(0, 24).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Hour")
 @Html.DropDownList("Minute", Enumerable.Range(0, 60).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Minute")
 
+<asp:Button ID="btnSubmit" runat="server" CssClass="btn-active"
+            Text="Submit Data" onclientclick="ClientSideClick(this)" UseSubmitBehavior="False"
+            onclick="btnSubmit_Click" Width="120px" />
+<input type="button" name="btnSubmit" value="Submit Data" onclick="ClientSideClick(this);
+WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;btnSubmit&quot;,
+&quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))" id="btnSubmit"
+       class="btn-active" style="width:120px;" />
