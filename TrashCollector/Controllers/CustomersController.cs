@@ -14,9 +14,6 @@ namespace TrashCollector.Controllers
     public class CustomersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private int year;
-        private int month;
-        private int day;
 
         // GET: Customers
         public ActionResult Index()
@@ -130,6 +127,20 @@ namespace TrashCollector.Controllers
 
         public ActionResult PickUpDay()
         {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PickUpDay(Customer customer)
+        {
+            //var date = customer.PickUpDay;
+            if (ModelState.IsValid)
+            {
+                db.Customers.Add(customer);
+                db.SaveChanges();
+                return View();
+            }
             return View();
         }
     }
