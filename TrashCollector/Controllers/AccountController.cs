@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Configuration;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -483,6 +485,18 @@ namespace TrashCollector.Controllers
                     properties.Dictionary[XsrfKey] = UserId;
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+            }
+
+            private void RedirectLogin(string username)
+            {
+                LoginRedirectByRoleSection roleRedirectSection = (LoginRedirectByRoleSection)ConfigurationManager.GetSection("loginRedirectByRole");
+                foreach (RoleRedirect roleRedirect in roleRedirectSection.RoleRedirects)
+                {
+                    if (Roles.IsUserInRole(username, roleRedirect.Role))
+                    {
+                        Response.Redirect(roleRedirect.Url);
+                    }
+                }
             }
         }
         #endregion
