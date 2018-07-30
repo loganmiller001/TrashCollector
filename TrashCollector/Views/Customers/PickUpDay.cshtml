@@ -1,11 +1,10 @@
-﻿@model TrashCollector.Models.Customer
-
-@Html.DropDownList("Day", Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Day")
+﻿@Html.DropDownList("Day", Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Day")
 @Html.DropDownList("Month", Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), "Month")
 @Html.DropDownList("Year", Enumerable.Range(2018, 45).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Year")
 @Html.DropDownList("Hour", Enumerable.Range(0, 24).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Hour")
 @Html.DropDownList("Minute", Enumerable.Range(0, 60).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Minute")
 
+<<<<<<< HEAD
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -25,3 +24,12 @@
 </div>
 
 
+=======
+<asp:Button ID="btnSubmit" runat="server" CssClass="btn-active"
+            Text="Submit Data" onclientclick="ClientSideClick(this)" UseSubmitBehavior="False"
+            onclick="btnSubmit_Click" Width="120px" />
+<input type="button" name="btnSubmit" value="Submit Data" onclick="ClientSideClick(this);
+WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;btnSubmit&quot;,
+&quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))" id="btnSubmit"
+       class="btn-active" style="width:120px;" />
+>>>>>>> parent of 5a101e4... Created view to display whats needed with button, still need to create and add the date information into the table
