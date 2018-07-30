@@ -132,5 +132,19 @@ namespace TrashCollector.Controllers
         {
             return View();
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PickUpDay(Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Customers.Add(customer);
+                db.SaveChanges();
+                return View();
+            }
+            return View();
+        }
     }
 }
