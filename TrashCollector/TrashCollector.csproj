@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201807271416117_AddedLoginInfoToTables.Designer.cs">
       <DependentUpon>201807271416117_AddedLoginInfoToTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807311502535_ChangedPickupDayintoStringForCustomers.cs" />
+    <Compile Include="Migrations\201807311502535_ChangedPickupDayintoStringForCustomers.Designer.cs">
+      <DependentUpon>201807311502535_ChangedPickupDayintoStringForCustomers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -324,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807271416117_AddedLoginInfoToTables.resx">
       <DependentUpon>201807271416117_AddedLoginInfoToTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807311502535_ChangedPickupDayintoStringForCustomers.resx">
+      <DependentUpon>201807311502535_ChangedPickupDayintoStringForCustomers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

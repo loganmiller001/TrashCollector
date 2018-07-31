@@ -97,21 +97,8 @@ namespace TrashCollector.Controllers
                     }
                     else if (User.IsInRole("Admin"))
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Role");
                     }
-
-                    //if (Roles.IsUserInRole("Customers"))
-                    //{
-                    //    return RedirectToAction("Create", "Customers");
-                    //}
-                    //else if (Roles.IsUserInRole("Employees"))
-                    //{
-                    //    return RedirectToAction("Index", "Employees");
-                    //}
-                    //else if (Roles.IsUserInRole("admin"))
-                    //{
-                    //    return RedirectToAction("Index", "Home");
-                    //}
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");

@@ -2,8 +2,8 @@
 @Html.DropDownList("Day", Enumerable.Range(1, 31).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Day")
 @Html.DropDownList("Month", Enumerable.Range(1, 12).Select(i => new SelectListItem { Value = i.ToString(), Text = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(i) }), "Month")
 @Html.DropDownList("Year", Enumerable.Range(2018, 45).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Year")
-@Html.DropDownList("Hour", Enumerable.Range(0, 24).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Hour")
-@Html.DropDownList("Minute", Enumerable.Range(0, 60).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Minute")
+@*@Html.DropDownList("Hour", Enumerable.Range(0, 24).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Hour")
+@Html.DropDownList("Minute", Enumerable.Range(0, 60).Select(i => new SelectListItem { Value = i.ToString(), Text = i.ToString() }), "Minute")*@
 
 @using (Html.BeginForm())
 {

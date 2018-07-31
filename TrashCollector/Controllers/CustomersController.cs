@@ -14,9 +14,6 @@ namespace TrashCollector.Controllers
     public class CustomersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        private int year;
-        private int month;
-        private int day;
 
         // GET: Customers
         public ActionResult Index()
@@ -82,7 +79,7 @@ namespace TrashCollector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,FirstName,LastName,StreetAddress,Zipcode,AmmountDue")] Customer customer)
+        public ActionResult Edit([Bind(Include = "CustomerId,FirstName,LastName,StreetAddress,Zipcode")] Customer customer)
         {
             if (ModelState.IsValid)
             {
