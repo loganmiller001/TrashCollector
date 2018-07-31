@@ -12,6 +12,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TrashCollector.Models;
 
+
+
 namespace TrashCollector.Controllers
 {
     [Authorize]
@@ -83,6 +85,33 @@ namespace TrashCollector.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                  var user = await UserManager.FindAsync(model.UserName, model.Password);
+
+                    if (User.IsInRole("Customer"))
+                    {
+                        return RedirectToAction("Create", "Customers");
+                    }
+                    else if (User.IsInRole("Employee"))
+                    {
+                        return RedirectToAction("Index", "Employees");
+                    }
+                    else if (User.IsInRole("Admin"))
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                    //if (Roles.IsUserInRole("Customers"))
+                    //{
+                    //    return RedirectToAction("Create", "Customers");
+                    //}
+                    //else if (Roles.IsUserInRole("Employees"))
+                    //{
+                    //    return RedirectToAction("Index", "Employees");
+                    //}
+                    //else if (Roles.IsUserInRole("admin"))
+                    //{
+                    //    return RedirectToAction("Index", "Home");
+                    //}
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -228,6 +257,7 @@ namespace TrashCollector.Controllers
             return View(model);
         }
 
+        
         //
         // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]

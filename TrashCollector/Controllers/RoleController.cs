@@ -19,15 +19,23 @@ namespace TrashCollector.Controllers
             {
                 if (!isAdminUser())
                 {
-                    return RedirectToAction("Index", "Home");
+                    if (User.IsInRole("Customers"))
+                    {
+                        return RedirectToAction("Create", "Customers");
+                    }
+                    else if (User.IsInRole("Employees"))
+                    {
+                        return RedirectToAction("Index", "Employees");
+                    }
                 }
+
             }
             else
             {
                 return RedirectToAction("Index", "Home");
             }
-            var Role = context.Roles.ToList();
-            return View();
+            var Roles = context.Roles.ToList();
+            return View(Roles);
         }
 
         public Boolean isAdminUser()
