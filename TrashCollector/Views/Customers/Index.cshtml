@@ -29,6 +29,9 @@
         <th>
             @Html.DisplayNameFor(model => model.PickUpDay)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OneTimePickUp)
+        </th>
         <th></th>
     </tr>
 
@@ -53,9 +56,12 @@
             @Html.DisplayFor(modelItem => item.PickUpDay)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.OneTimePickUp)
+        </td>
+        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CustomerId }) |
             @Html.ActionLink("Details", "Details", new { id=item.CustomerId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CustomerId }) |
+            @Html.ActionLink("OneTimeCollection", "OneTimeCollection", new { id=item.CustomerId }) |
             @Html.ActionLink("PickUpDay", "PickUpDay", new { id=item.CustomerId})
         </td>
     </tr>

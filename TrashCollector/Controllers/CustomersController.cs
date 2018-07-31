@@ -133,7 +133,7 @@ namespace TrashCollector.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PickUpDay([Bind(Include = "CustomerId, FirstName, LastName, StreetAddress, Zipcode, PickUpDay")]Customer customer)
+        public ActionResult PickUpDay([Bind(Include = "CustomerId, FirstName, LastName, StreetAddress, Zipcode, PickUpDay, OneTimePickUp")]Customer customer)
         {
             Customer pickup = (from p in db.Customers where p.CustomerId == customer.CustomerId select p).FirstOrDefault();
             if (ModelState.IsValid)
@@ -146,6 +146,27 @@ namespace TrashCollector.Controllers
             return View();
         }
 
+        public ActionResult OneTimeCollection(int? id)
+        {
+            var update = (from u in db.Customers where u.CustomerId == id select u).FirstOrDefault();
+            return View(update);
 
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult OneTimeCollection([Bind(Include = "CustomerId, FirstName, LastName, StreetAddress, Zipcode, PickUpDay, OneTimePickUp")]Customer customer)
+        {
+            Customer pickup = (from p in db.Customers where p.CustomerId == customer.CustomerId select p).FirstOrDefault();
+            if (ModelState.IsValid)
+            {
+                pickup.OneTimePickUp = customer.OneTimePickUp;
+                db.Entry(pickup).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
