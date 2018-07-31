@@ -79,7 +79,7 @@ namespace TrashCollector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerId,FirstName,LastName,StreetAddress,Zipcode")] Customer customer)
+        public ActionResult Edit([Bind(Include = "CustomerId,FirstName,LastName,StreetAddress,Zipcode,PickUpDay")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -125,23 +125,33 @@ namespace TrashCollector.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult PickUpDay()
+        public ActionResult PickUpDay(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customer);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PickUpDay(Customer customer)
+        public ActionResult PickUpDay([Bind(Include = "PickUpDay")]Customer customer)
         {
+            
             if (ModelState.IsValid)
             {
-                db.Customers.Add(customer);
+                db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
-                return View();
+                return RedirectToAction("Index");
             }
-            return View();
+            return View(customer);
         }
     }
 }
