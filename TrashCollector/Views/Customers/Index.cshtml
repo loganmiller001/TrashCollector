@@ -24,9 +24,6 @@
             @Html.DisplayNameFor(model => model.Zipcode)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AmountDue)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.PickUpDay)
         </th>
         <th>
@@ -50,9 +47,6 @@
             @Html.DisplayFor(modelItem => item.Zipcode)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AmountDue)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.PickUpDay)
         </td>
         <td>
@@ -60,7 +54,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CustomerId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CustomerId }) |
+            @Html.ActionLink("AmountDue", "AmountDue", new { id=item.CustomerId }) |
             @Html.ActionLink("OneTimeCollection", "OneTimeCollection", new { id=item.CustomerId }) |
             @Html.ActionLink("PickUpDay", "PickUpDay", new { id=item.CustomerId})
         </td>
