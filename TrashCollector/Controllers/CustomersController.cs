@@ -127,31 +127,23 @@ namespace TrashCollector.Controllers
 
         public ActionResult PickUpDay(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
+            var update = (from u in db.Customers where u.CustomerId == id select u).FirstOrDefault();
+            return View(update);
+
         }
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PickUpDay([Bind(Include = "PickUpDay")]Customer customer)
+        public ActionResult PickUpDay([Bind(Include = "CustomerId, FirstName, LastName, StreetAddress, Zipcode, PickUpDay")]Customer customer)
         {
-            
+            Customer pickup = (from p in db.Customers where p.CustomerId == customer.CustomerId select p).FirstOrDefault();
             if (ModelState.IsValid)
             {
-                db.Entry(customer).State = EntityState.Modified;
+                pickup.PickUpDay = customer.PickUpDay;
+                db.Entry(pickup).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            return View();
         }
     }
 }
