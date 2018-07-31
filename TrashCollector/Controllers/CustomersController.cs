@@ -22,7 +22,7 @@ namespace TrashCollector.Controllers
         }
 
         // GET: Customers/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult AmountDue(int? id)
         {
             if (id == null)
             {
