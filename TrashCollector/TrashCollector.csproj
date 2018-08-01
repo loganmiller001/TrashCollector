@@ -319,6 +319,7 @@
     <Content Include="Views\Customers\Index.cshtml" />
     <Content Include="Views\Customers\PickUpDay.cshtml" />
     <Content Include="Views\Customers\OneTimeCollection.cshtml" />
+    <Content Include="Views\Customers\TemporaryHalt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

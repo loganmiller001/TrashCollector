@@ -177,12 +177,13 @@ namespace TrashCollector.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult TemporaryHalt([Bind(Include = "CustomerId, FirstName, LastName, StreetAddress, Zipcode, PickUpDay, OneTimePickUp, OneTimeCollection")]Customer customer)
+        public ActionResult TemporaryHalt([Bind(Include = "CustomerId, FirstName, LastName, StreetAddress, Zipcode, PickUpDay, OneTimePickUp, StartDate, EndDate")]Customer customer)
         {
             Customer setDates = (from p in db.Customers where p.CustomerId == customer.CustomerId select p).FirstOrDefault();
             if (ModelState.IsValid)
             {
-                setDates.OneTimePickUp = customer.OneTimePickUp;
+                setDates.StartDate = customer.StartDate;
+                setDates.EndDate = customer.EndDate;
                 db.Entry(setDates).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
