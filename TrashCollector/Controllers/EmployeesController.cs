@@ -139,44 +139,58 @@ namespace TrashCollector.Controllers
         }
 
 
-        public ActionResult FilterPickUpsByDay()
+        public ActionResult FilterPickUpsByDay(Customer customer)
         {
-            return View();
+            return View(db.Customers.ToList());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult FilterPickupsByDay(Customer customer)
+        public ActionResult PickUpDays(Customer customer)
         {
-            if (customer.PickUpDay == "Monday")
+            string currentUserId = User.Identity.GetUserId();
+            Employee me = db.Employees.Where(e => e.Id == currentUserId).FirstOrDefault();
+            var pickup = db.Customers.Where(p => p.PickUpDay == customer.PickUpDay);
+            if (pickup == null)
             {
-                return View(db.Customers.ToList());
+                return View();
             }
-            if (customer.PickUpDay == "Tuesday")
+            else if(pickup != null)
             {
-                return View(db.Customers.ToList());
+                var zoneCustomers = db.Customers.Where(c => c.PickUpDay == pickup.ToString());
+                return View(zoneCustomers);
+                
             }
-            if (customer.PickUpDay == "Wednesday")
-            {
-                return View(db.Customers.ToList());
-            }
-            if (customer.PickUpDay == "Thursday")
-            {
-                return View(db.Customers.ToList());
-            }
-            if (customer.PickUpDay == "Friday")
-            {
-                return View(db.Customers.ToList());
-            }
-            if (customer.PickUpDay == "Saturday")
-            {
-                return View(db.Customers.ToList());
-            }
-            if (customer.PickUpDay == "Sunday")
-            {
-                return View(db.Customers.ToList());
-            }
-            return View();
+             return RedirectToAction("FilterByPickUps");
+            //    if (customer.PickUpDay == "Monday")
+            //    {
+            //        return View(db.Customers.ToList());
+            //    }
+            //    if (customer.PickUpDay == "Tuesday")
+            //    {
+            //        return View(db.Customers.ToList());
+            //    }
+            //    if (customer.PickUpDay == "Wednesday")
+            //    {
+            //        return View(db.Customers.ToList());
+            //    }
+            //    if (customer.PickUpDay == "Thursday")
+            //    {
+            //        return View(db.Customers.ToList());
+            //    }
+            //    if (customer.PickUpDay == "Friday")
+            //    {
+            //        return View(db.Customers.ToList());
+            //    }
+            //    if (customer.PickUpDay == "Saturday")
+            //    {
+            //        return View(db.Customers.ToList());
+            //    }
+            //    if (customer.PickUpDay == "Sunday")
+            //    {
+            //        return View(db.Customers.ToList());
+            //    }
+            //    return View(db.Customers.ToList());
+        }
         }
     }
-}
