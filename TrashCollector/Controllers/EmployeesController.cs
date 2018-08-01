@@ -16,16 +16,21 @@ namespace TrashCollector.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Employees
-        public ActionResult Index(Customer customer, Employee employee)
+        public ActionResult Index()
         {
+            var pickupsToday = DateTime.Now.DayOfWeek.ToString();
             string currentUserId = User.Identity.GetUserId();
             Employee me = db.Employees.Where(e => e.Id == currentUserId).FirstOrDefault();
+            if (pickupsToday == null)
+            {
+                return View();
+            }
+            else
+            { 
+            var zoneCustomers = db.Customers.Where(c => c.Zipcode == me.ZipCode && c.PickUpDay == pickupsToday);
+                return View(zoneCustomers.ToList());
+            }
 
-            var zoneCustomers = db.Customers.Where(c => c.Zipcode == me.ZipCode);
-
-
-
-            return View(zoneCustomers.ToList());
         }
 
         // GET: Employees/Details/5
@@ -133,15 +138,9 @@ namespace TrashCollector.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult CustomersList(Employee employee, Customer customer)
+
+        public ActionResult FilterPickUpsByDay()
         {
-            if (employee.ZipCode == customer.Zipcode)
-            {
-                foreach (var zipcode in db.Customers)
-                {
-                    return View(db.Customers.ToList());
-                }
-            }
             return View();
         }
 
@@ -173,11 +172,11 @@ namespace TrashCollector.Controllers
             {
                 return View(db.Customers.ToList());
             }
-            if (customer.PickUpDay == "Sunday") ;
+            if (customer.PickUpDay == "Sunday")
             {
                 return View(db.Customers.ToList());
             }
-
+            return View();
         }
     }
 }
