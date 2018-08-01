@@ -233,6 +233,10 @@
     <Compile Include="Migrations\201807312008457_FoundSpellingErrorInCustomerModel.Designer.cs">
       <DependentUpon>201807312008457_FoundSpellingErrorInCustomerModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808011220013_AddedStartandEndDateToCustomerTable.cs" />
+    <Compile Include="Migrations\201808011220013_AddedStartandEndDateToCustomerTable.Designer.cs">
+      <DependentUpon>201808011220013_AddedStartandEndDateToCustomerTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -353,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807312008457_FoundSpellingErrorInCustomerModel.resx">
       <DependentUpon>201807312008457_FoundSpellingErrorInCustomerModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011220013_AddedStartandEndDateToCustomerTable.resx">
+      <DependentUpon>201808011220013_AddedStartandEndDateToCustomerTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

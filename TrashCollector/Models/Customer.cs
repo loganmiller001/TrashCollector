@@ -17,6 +17,8 @@ namespace TrashCollector.Models
         public double AmountDue { get; set; }
         public string PickUpDay { get; set; }
         public string OneTimePickUp {get; set;}
+        public string StartDate { get; set; }
+        public string EndDate { get; set; }
 
     }
 }

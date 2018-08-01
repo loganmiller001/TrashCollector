@@ -168,5 +168,26 @@ namespace TrashCollector.Controllers
             }
             return View();
         }
+
+        public ActionResult TemporaryHalt(int? id)
+        {
+            var update = (from u in db.Customers where u.CustomerId == id select u).FirstOrDefault();
+            return View(update);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TemporaryHalt([Bind(Include = "CustomerId, FirstName, LastName, StreetAddress, Zipcode, PickUpDay, OneTimePickUp, OneTimeCollection")]Customer customer)
+        {
+            Customer setDates = (from p in db.Customers where p.CustomerId == customer.CustomerId select p).FirstOrDefault();
+            if (ModelState.IsValid)
+            {
+                setDates.OneTimePickUp = customer.OneTimePickUp;
+                db.Entry(setDates).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }
