@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -17,15 +18,14 @@ namespace TrashCollector.Controllers
         // GET: Employees
         public ActionResult Index(Customer customer, Employee employee)
         {
-            //if (employee.ZipCode == customer.Zipcode)
-            //{
-            //    foreach(var zipcode in db.Customers)
-            //    {
-            //        return View(db.Customers.ToList());
-            //    } 
-            //}
+            string currentUserId = User.Identity.GetUserId();
+            Employee me = db.Employees.Where(e => e.Id == currentUserId).FirstOrDefault();
 
-            return View(db.Employees.ToList());
+            var zoneCustomers = db.Customers.Where(c => c.Zipcode == me.ZipCode);
+
+
+
+            return View(zoneCustomers.ToList());
         }
 
         // GET: Employees/Details/5
@@ -58,6 +58,7 @@ namespace TrashCollector.Controllers
         {
             if (ModelState.IsValid)
             {
+                employee.Id = User.Identity.GetUserId();
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
