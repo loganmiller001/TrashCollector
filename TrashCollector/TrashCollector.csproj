@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201808011220013_AddedStartandEndDateToCustomerTable.Designer.cs">
       <DependentUpon>201808011220013_AddedStartandEndDateToCustomerTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808011814242_AttachedForeignKeysToCustomerandEmployeetoApplicationUserId.cs" />
+    <Compile Include="Migrations\201808011814242_AttachedForeignKeysToCustomerandEmployeetoApplicationUserId.Designer.cs">
+      <DependentUpon>201808011814242_AttachedForeignKeysToCustomerandEmployeetoApplicationUserId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -361,6 +365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808011220013_AddedStartandEndDateToCustomerTable.resx">
       <DependentUpon>201808011220013_AddedStartandEndDateToCustomerTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808011814242_AttachedForeignKeysToCustomerandEmployeetoApplicationUserId.resx">
+      <DependentUpon>201808011814242_AttachedForeignKeysToCustomerandEmployeetoApplicationUserId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

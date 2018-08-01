@@ -15,8 +15,16 @@ namespace TrashCollector.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Employees
-        public ActionResult Index()
+        public ActionResult Index(Customer customer, Employee employee)
         {
+            //if (employee.ZipCode == customer.Zipcode)
+            //{
+            //    foreach(var zipcode in db.Customers)
+            //    {
+            //        return View(db.Customers.ToList());
+            //    } 
+            //}
+
             return View(db.Employees.ToList());
         }
 
@@ -122,6 +130,53 @@ namespace TrashCollector.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult CustomersList(Employee employee, Customer customer)
+        {
+            if (employee.ZipCode == customer.Zipcode)
+            {
+                foreach (var zipcode in db.Customers)
+                {
+                    return View(db.Customers.ToList());
+                }
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult FilterPickupsByDay(Customer customer)
+        {
+            if (customer.PickUpDay == "Monday")
+            {
+                return View(db.Customers.ToList());
+            }
+            if (customer.PickUpDay == "Tuesday")
+            {
+                return View(db.Customers.ToList());
+            }
+            if (customer.PickUpDay == "Wednesday")
+            {
+                return View(db.Customers.ToList());
+            }
+            if (customer.PickUpDay == "Thursday")
+            {
+                return View(db.Customers.ToList());
+            }
+            if (customer.PickUpDay == "Friday")
+            {
+                return View(db.Customers.ToList());
+            }
+            if (customer.PickUpDay == "Saturday")
+            {
+                return View(db.Customers.ToList());
+            }
+            if (customer.PickUpDay == "Sunday") ;
+            {
+                return View(db.Customers.ToList());
+            }
+
         }
     }
 }

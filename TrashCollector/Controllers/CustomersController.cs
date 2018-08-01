@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using TrashCollector.Models;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 
 namespace TrashCollector.Controllers
 {
@@ -18,7 +19,10 @@ namespace TrashCollector.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+            var userId = User.Identity.GetUserId();
+            var customerInfo = (from c in db.Customers where c.Id.Equals(userId) select c);
+            customerInfo.ToList();
+            return View(customerInfo);
         }
 
         // GET: Customers/Details/5
