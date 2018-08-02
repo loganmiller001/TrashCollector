@@ -26,8 +26,8 @@ namespace TrashCollector.Controllers
                 return View();
             }
             else
-            { 
-            var zoneCustomers = db.Customers.Where(c => c.Zipcode == me.ZipCode && c.PickUpDay == pickupsToday);
+            {
+                var zoneCustomers = db.Customers.Where(c => c.Zipcode == me.ZipCode && c.PickUpDay == pickupsToday);
                 return View(zoneCustomers.ToList());
             }
 
